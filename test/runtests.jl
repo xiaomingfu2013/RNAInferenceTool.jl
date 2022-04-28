@@ -1,6 +1,11 @@
 using RNAInferenceTool
-using Test
+using Test, SafeTestsets
 
-@testset "RNAInferenceTool.jl" begin
-    # Write your tests here.
+@time begin
+    @time @safetestset "compute_distribution" begin
+        include("test_compute_dist.jl")
+    end
+    @time @safetestset "Inference" begin
+        include("test_experiment.jl")
+    end 
 end
