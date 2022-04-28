@@ -129,7 +129,7 @@ end
         
 params: σ_off, σ_on, ρ_on, ρ_off, d, τ
 """
-function M_delay_complete(p, NT::Int; kwargs...)
+function M_delay(p, NT::Int; kwargs...)
 	σ_off, σ_on, ρ_on, ρ_off, d, τ = p
     M = FSP_mat([σ_off, σ_on, ρ_on, ρ_off, d],NT; kwargs...)
     semigroup = exp(Matrix(M)*τ)
@@ -169,18 +169,6 @@ function M_bursty(p, NT::Int)
     return taylor_coefficients(NT+1,-1,gen)
 end
 
-
-# u0 = [(σ_off/(σ_off+σ_on));fill(0.,NT);(σ_on/(σ_off+σ_on));fill(0.,NT)]
-# sol = semigroup*u0
-function M_delay(p, NT::Int)
-    σ_off, σ_on, _, _, _, τ = p
-    M = FSP_mat(p, NT)
-    semigroup = exp(Matrix(M)*τ)
-    sol1 =@view semigroup[:, 1]
-    sol2 =@view semigroup[:, NT+2]
-    sol = (σ_off/(σ_off+σ_on))*sol1 + (σ_on/(σ_off+σ_on))*sol2
-    sol[1:NT+1]+sol[NT+2:end]
-end
 
 
 
