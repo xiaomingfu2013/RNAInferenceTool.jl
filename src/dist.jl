@@ -63,9 +63,8 @@ end
 # combine_dist(test,3)
 
 "
- Wasserstein
+ Wasserstein distance for 1d case
 "
-wasserstein_distance = Wasserstein()
 function (f::Wasserstein)(P::Array,Q::Array)
   	cumP = cumsum(P)
 	cumQ = cumsum(Q)
