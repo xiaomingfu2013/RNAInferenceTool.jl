@@ -19,9 +19,10 @@ Suppose we have a set of synthetic nascent RNA data from stochastic simulation a
 where the parameters are 
 ```julia
 # True parameters 
-σ_off, σ_on, ρ_on, ρ_off, d, τ, tf =  [1.0526,8.2034,57.989,0,0,0.5, 20.] # σ_off, σ_on, ρ_on, ρ_off, d, τ, SSA final time
-params =  [σ_off, σ_on, ρ_on, ρ_off, d, τ, tf]
-L1 = 862; L2 = 2200; # L1 =  signal fluorescence PP7 862 bp; L2 = GAL10 2200 bp 
+# σ_off, σ_on, ρ_on, ρ_off, d, τ, SSA final time
+σ_off, σ_on, ρ_on, ρ_off, d, τ, tf =  [1.0526,8.2034,57.989,0,0,0.5, 20.] 
+# L1 =  signal fluorescence PP7 862 bp; L2 = GAL10 2200 bp 
+L1 = 862; L2 = 2200; 
 ```
 Here `ρ_off` represents the initiation rate when the gene state is inactive (leaky telegraph model), `d` is the possible detaching rate of polymerase from the gene. In this case, they are both set to zero.  Here `L1` and `L` represents the PP7 862 bp (the linear increasing part of the fluorescence) and gene of interest (plateu part of the fluorescence) GAL10 2200 bp respectively.
 
@@ -41,7 +42,7 @@ scatter(convert_histo(histo_synthetic), labels="synthetic data") # plot distribu
 #For delay model the parameter order: σ_off, σ_on, ρ_on, ρ_off, d, τ
 SRange = [(0.0,50.0),(0.0,50.0),(0.0,100.0),(0.0,0.0),(0.0,0.0),(τ,τ)]
 
-#For telegraph model the parameter order: σ_off, σ_on, ρ_on, ρ_off, d
+#For telegraph model the parameter order: σ_off, σ_on, ρ_on, ρ_off, d = 1/τ 
 SRange_tele = [(0.0,50.0),(0.0,50.0),(0.0,100.0),(0.0,0.0),(1/τ,1/τ)]
 ```
 
@@ -58,7 +59,7 @@ infer_struct_tele = OptimStruct(histo_synthetic, G1(), Likelihood(), Telegraph()
 ```
 
 ```julia
-estimated_params, distributions = optim_function(SRange, infer_struct, MaxFuncEvals = 10000, L1 = L1, L2 = L - L1)
+estimated_params, distributions = optim_function(SRange, infer_struct, MaxFuncEvals = 10000, L1 = L1, L2 = L2)
 estimated_params_tele, distributions_tele = optim_function(SRange_tele, infer_struct_tele, MaxFuncEvals = 10000)
 ```
 
