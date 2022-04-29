@@ -10,6 +10,7 @@ This is an auxiliary package for RNA inference paper. This package can be instal
 ] add https://github.com/palmtree2013/RNAInferenceTool.jl
 using RNAInferenceTool
 ```
+Note that the optimization function is a wrapper of adaptive differential evolution optimzier from [BlackBoxOptim](https://github.com/robertfeldt/BlackBoxOptim.jl).
 
 # An quick example of fitting the synthetic nascent signal data
 
