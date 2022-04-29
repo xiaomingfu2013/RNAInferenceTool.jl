@@ -25,7 +25,7 @@ where the parameters are
 # L1 =  signal fluorescence PP7 862 bp; L2 = GAL10 2200 bp 
 L1 = 862; L2 = 2200; 
 ```
-Here `ρ_off` represents the initiation rate when the gene state is inactive (leaky telegraph model), `d` is the possible detaching rate of polymerase from the gene. In this case, they are both set to zero.  Here `L1` and `L` represents the PP7 862 bp (the linear increasing part of the fluorescence) and gene of interest (plateu part of the fluorescence) GAL10 2200 bp respectively.
+Here `ρ_off` represents the initiation rate when the gene state is inactive (leaky telegraph model), `d` is the possible detaching rate of polymerase from the gene. In this case, they are both set to zero.  Here `L1` and `L2` represents the PP7 862 bp (the linear increasing part of the fluorescence) and gene of interest (plateu part of the fluorescence) GAL10 2200 bp respectively.
 
 ## Check the distribution
 
