@@ -58,11 +58,11 @@ The `OptimStruct` consists of four elements:
 
 ```julia
 infer_struct = OptimStruct(histo_synthetic, G1(), Likelihood(), Delay(); infer_counts = false, L1 = 862, L2 =2200)
-infer_struct_tele = OptimStruct(histo_synthetic, G1(), Likelihood(), Telegraph(); infer_counts = true)
+infer_struct_tele = OptimStruct(histo_synthetic, G1(), Likelihood(), Telegraph(); infer_counts = false, L1 = 862, L2 =2200)
 ```
 
 ```julia
-estimated_params, distributions = optim_function(SRange, infer_struct, MaxFuncEvals = 10000, L1 = L1, L2 = L2)
+estimated_params, distributions = optim_function(SRange, infer_struct, MaxFuncEvals = 10000)
 estimated_params_tele, distributions_tele = optim_function(SRange_tele, infer_struct_tele, MaxFuncEvals = 10000)
 ```
 
