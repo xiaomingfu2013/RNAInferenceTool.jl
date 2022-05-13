@@ -57,8 +57,8 @@ The `OptimStruct` consists of four elements:
 6. L1, L2: if infer_counts is set `false` then L1 and L2 must be provided which represents the indices of the trapezoid signal function.
 
 ```julia
-infer_struct = OptimStruct(histo_synthetic, G1(), Likelihood(), Delay())
-infer_struct_tele = OptimStruct(histo_synthetic, G1(), Likelihood(), Telegraph())
+infer_struct = OptimStruct(histo_synthetic, G1(), Likelihood(), Delay(); infer_counts = false, L1 = 862, L2 =2200)
+infer_struct_tele = OptimStruct(histo_synthetic, G1(), Likelihood(), Telegraph(); infer_counts = true)
 ```
 
 ```julia
