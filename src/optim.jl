@@ -6,22 +6,26 @@ Inference data struct
 3. dist: the distance function: likelihood, likelihood_fusion, likelihood_rejection and other distance functions in Distances.jl are supported;
 4. model: telegraph model, delay telegraph model, bursty model and Poisson model are supported;
 5. ishisto_data: if the data is of histogram type (true) esle dist type (false)
+6. infer_counts: `true` if the inferred histogram data represents the number of count of the product (mature or bound Pol II), `false` if the histogram data represents the normalised signal insensity.
+7. L1, L2: if infer_counts is set `false` then L1 and L2 must be provided which represents the indices of the trapezoid signal function;
 """
-struct OptimStruct{S,D,M}
+struct OptimStruct{S,D,M,T}
     data::Vector
     stage::S
     dist::D
     model::M
     ishisto_data::Bool
+    infer_counts::Bool
+    L1::Union{T, Nothing}
+    L2::Union{T, Nothing}
 end
-function OptimStruct(data::Vector, stage::S, dist::D, model::M; ishisto_data::Bool=true) where {S,D,M}
-    return OptimStruct(data, stage, dist, model, ishisto_data)
+function OptimStruct(data::Vector, stage::S, dist::D, model::M; infer_counts::Bool, L1::T=nothing, L2::T=nothing, ishisto_data::Bool=true) where {S,D,M,T}
+    if !infer_counts && (L1 === nothing || L2 === nothing)
+        error("To incoporate signal, please indicate the length indices L1 and L2 for the trapezoid function!") 
+    end
+    return OptimStruct{typeof(stage),typeof(dist),typeof(model),typeof(L1)}(data, stage, dist, model, ishisto_data, infer_counts, L1, L2)
 end
 
-function inference_setup(data, model, dist, SRange; stage=G1(), ishisto_data::Bool=true, kwargs...)
-    optim_struct = OptimStruct(data, stage, dist, model, ishisto_data)
-    optim_function(SRange, optim_struct; kwargs...)
-end
 
 struct OptimStructWrapper{S,D,M,F,FP,SR,EF}
     data::Vector
@@ -49,9 +53,10 @@ important kwargs:
 3. log_search_range: use when the search range is very large
 4. TraceMode: :silent, :compact
 """
-function optim_function(SRange, optim_struct::OptimStruct, args...; infer_counts::Bool=false, mom_match::Bool=false, log_search_range::Bool=false, L1=862, L2=2200, falsepositive=0, NT=nothing, kwargs...)
+function optim_function(SRange, optim_struct::OptimStruct, args...;  mom_match::Bool=false, log_search_range::Bool=false, falsepositive=0, NT=nothing, kwargs...)
     fp = falsepositive
-
+    L1, L2 = optim_struct.L1, optim_struct.L2
+    infer_counts = optim_struct.infer_counts
     filter_uniform, err_func, reference_data, NT = ini_collection(optim_struct, falsepositive, infer_counts, mom_match, L1, L2, NT; kwargs...)
 
     optim_struct_wrapper = OptimStructWrapper(optim_struct.data, optim_struct.stage, optim_struct.dist, optim_struct.model, optim_struct.ishisto_data, filter_uniform, infer_counts, fp, log_search_range, SRange, err_func, reference_data)
