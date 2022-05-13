@@ -9,7 +9,7 @@ histo_synthetic = readdlm("histo_synthetic.txt")|>vec
 params = [1.0526,8.2034,57.989,0,0,τ]
 #For delay model the parameter order: σ_off, σ_on, ρ_on, ρ_off, d, τ, fp
 SRange = [(0.0,50.0),(0.0,50.0),(0.0,100.0),(0.0,0.0),(0.0,0.0),(τ,τ),]
-infer_struct = OptimStruct(histo_synthetic, G1(), Likelihood(), Delay())
+infer_struct = OptimStruct(histo_synthetic, G1(), Likelihood(), Delay(); infer_counts =false, L1= 862, L2 = 2200)
 estimated_params, distributions = optim_function(SRange, infer_struct, MaxFuncEvals = 7000, TraceMode = :silent)
 
 # estimated_params_ini, distributions_ini = optim_function(SRange, infer_struct, params, MaxFuncEvals = 7000, TraceMode = :compact, log_search_range = true)
