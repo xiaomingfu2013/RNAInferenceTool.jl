@@ -15,7 +15,7 @@ Note that the optimization function is a wrapper of adaptive differential evolut
 # An quick example of fitting the synthetic nascent signal data
 
 ## Import data and true parameter set
-Suppose we have a set of synthetic nascent RNA data from stochastic simulation algorithm using delay telegraph model. Please check [this example](https://github.com/palmtree2013/RNAInferenceTool.jl/blob/main/examples/synthetic_data.ipynb) for details on how to generate synthetic data using [DelaySSAToolkit](https://github.com/palmtree2013/DelaySSAToolkit.jl). The delay telegraph model can be described as 
+Suppose we have a set of synthetic nascent RNA data from stochastic simulation algorithm using delay telegraph model (check [this example](https://github.com/palmtree2013/RNAInferenceTool.jl/blob/main/examples/synthetic_data.ipynb) for details on how to generate synthetic data using [DelaySSAToolkit](https://github.com/palmtree2013/DelaySSAToolkit.jl)). The delay telegraph model can be described as 
 ![illustrate](examples/illustrate_delaytelegraph.png)
 where the parameters are 
 ```julia
