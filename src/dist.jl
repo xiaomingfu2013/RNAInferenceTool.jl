@@ -58,9 +58,6 @@ function (f::Likelihood_weight)(estimate_signal::Vector, histo_normalized_data::
     ind = Int.(floor.(histo_normalized_data) .+ 1)
     -sum(log.(estimate_signal[ind] .+ f.ξ)) # to avoid log(0)
 end
-# test=[1,1,2,3,4,5,4,3,2,1]
-# combine_ind(test,3)
-# combine_dist(test,3)
 
 "
  Wasserstein distance for 1d case

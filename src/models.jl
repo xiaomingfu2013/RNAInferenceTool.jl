@@ -6,7 +6,7 @@ struct DelayComplete <: Model end
 struct Telegraph <: Model end
 struct TelegraphSync <: Model end
 struct Poisson <: Model end
-struct Bursty <: Model end
+
 
 function model_selection(params, NT::Int64, ::Delay)
     σ_off, σ_on, ρ_on, ρ_off, d, τ = params
@@ -36,10 +36,7 @@ function model_selection(params, NT::Int64, ::Poisson)
     M_Poisson([ρ, d], NT)
 end
 
-function model_selection(params, NT::Int64, ::Bursty)
-    a, b, d = params
-    M_bursty([a, b, d], NT)
-end
+
 
 # telegraph model
 """
@@ -151,22 +148,6 @@ function M_delay_signal(p, NT::Int; L1=862, L2=2200, kwargs...)
     sol = M_delay(p, NT)
     filter_uniform = hcat(convolve_uniform([L1, L2], NT; kwargs...)...)
     convolve_filter(filter_uniform, sol)
-end
-
-
-function taylor_coefficients(NT::Int, at_x, gen::Function)
-    Q = zeros(NT)
-    taylor_gen = taylor_expand(u -> gen(u), at_x, order=NT)
-    for j in 1:NT
-        Q[j] = taylor_gen[j-1]
-    end
-    return Q
-end
-
-function M_bursty(p, NT::Int)
-    σ_on, b, d = p
-    gen(u) = (1 / (1 - b * u))^(σ_on / d)
-    return taylor_coefficients(NT + 1, -1, gen)
 end
 
 

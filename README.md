@@ -52,7 +52,7 @@ The `OptimStruct` consists of four elements:
 1. data: default type is histogram data; the other supported type is to use distribution directly.
 2. stage: `G1` or `G2`; where `G2` type data is inferred by setting G2 = G1*G1 (convolution).
 3. dist: the distance function: Likelihood, Likelihood_fusion, Likelihood_rejection and other distance functions in Distances.jl are supported.
-4. model: telegraph model, delay telegraph model, bursty model and Poisson model are supported.
+4. model: telegraph model, delay telegraph model, and Poisson model are supported.
 5. infer_counts: `true` if the inferred histogram data represents the number of count of the product (mature or bound Pol II), `false` if the histogram data represents the normalised signal insensity.
 6. L1, L2: if infer_counts is set `false` then L1 and L2 must be provided which represents the indices of the trapezoid signal function.
 
