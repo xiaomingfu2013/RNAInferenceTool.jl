@@ -1,25 +1,24 @@
 # RNAInferenceTool
 
 <!-- [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://palmtree2013.github.io/RNAInferenceTool.jl/dev) -->
+<!-- [![Build Status](ht dtps://github.com/palmtree2013/RNAInferenceTool.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/palmtree2013/RNAInferenceTool.jl/actions/workflows/CI.yml?query=branch%3Amain) -->
 
-<!-- [![Build Status](https://github.com/palmtree2013/RNAInferenceTool.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/palmtree2013/RNAInferenceTool.jl/actions/workflows/CI.yml?query=branch%3Amain) -->
-
-This is an auxiliary package for RNA inference paper. This package can be install through the Julia package manager:
+This is an auxiliary package for RNA inference paper. This package can be installed through the Julia package manager:
 
 ```julia
 using Pkg
 Pkg.add(https://github.com/palmtree2013/RNAInferenceTool.jl)
 using RNAInferenceTool
 ```
-Note that the optimization function is a wrapper of adaptive differential evolution optimizier from [BlackBoxOptim](https://github.com/robertfeldt/BlackBoxOptim.jl).
+Note that the optimization function is a wrapper of adaptive differential evolution optimizer from [BlackBoxOptim](https://github.com/robertfeldt/BlackBoxOptim.jl).
 
-# An quick example of fitting the synthetic nascent signal data
+# A quick example of fitting the synthetic nascent signal data
 
 ## Import data and true parameter set
 Suppose we have a set of synthetic nascent RNA data from stochastic simulation algorithm using delay telegraph model (check [this example](https://github.com/palmtree2013/RNAInferenceTool.jl/blob/main/examples/synthetic_data.ipynb) for details on how to generate synthetic data using [DelaySSAToolkit](https://github.com/palmtree2013/DelaySSAToolkit.jl)). The delay telegraph model can be described as 
 ![illustrate](examples/illustrate_delaytelegraph.png)
 
-Here we define the rate of switching from the active (ON) state to  inactive (OFF) state as `σ_off`, the rate of switching from the OFF state to the ON state as `σ_on`. `ρ_on` represents the initiation rate when the gene state is ON. `ρ_off` represents the initiation rate when the gene state is OFF (leaky initiation rate), `d` is the detaching rate of polymerase from the gene. In this case, `ρ_off` and `d` are both set to zero.  Here `L1` and `L2` represent the PP7 862 bp (the linear increasing part of the fluorescence) and gene of interest (plateu part of the fluorescence) GAL10 2200 bp respectively. The numerical values are set as 
+Here we define the rate of switching from the active (ON) state to inactive (OFF) state as `σ_off`, the rate of switching from the OFF state to the ON state as `σ_on`. `ρ_on` represents the initiation rate when the gene state is ON. `ρ_off` represents the initiation rate when the gene state is OFF (leaky initiation rate), `d` is the detaching rate of polymerase from the gene. In this case, `ρ_off` and `d` are both set to zero.  Here `L1` and `L2` represent the PP7 862 bp (the linear increasing part of the fluorescence) and gene of interest (plateau part of the fluorescence) GAL10 2200 bp respectively. The numerical values are set as 
 ```julia
 # True parameters 
 # σ_off, σ_on, ρ_on, ρ_off, d, τ, SSA final time
@@ -57,7 +56,7 @@ Next, we set the data structure for optimization `OptimStruct`, which consists o
 4. model: telegraph model, delay telegraph model, and Poisson model are supported.
    
 Keywords arguments:
-1. infer_counts: Bool variable, `true` if the inferred histogram data is the number of count of the product (mature or bound Pol II), `false` if the histogram data is the normalized signal intensity.
+1. infer_counts: Bool type, `true` if the inferred histogram data is the number of count of the product (mature or bound Pol II), `false` if the histogram data is the normalized signal intensity.
 2. L1, L2: if infer_counts is set `false` then L1 and L2 must be provided which represents the indices of the trapezoid signal function.
 
 ```julia

@@ -1,5 +1,5 @@
 using DelaySSAToolkit # install package at https://github.com/palmtree2013/DelaySSAToolkit.jl
-using DiffEqJump
+using JumpProcesses
 #σ_off: Gon -> Goff
 #σ_on: Goff -> Gon
 #ρ_on: Gon -> Gon + N, triggers N => τ 0
