@@ -7,7 +7,8 @@
 This is an auxiliary package for RNA inference paper. This package can be install through the Julia package manager:
 
 ```julia
-] add https://github.com/palmtree2013/RNAInferenceTool.jl
+using Pkg
+Pkg.add(https://github.com/palmtree2013/RNAInferenceTool.jl)
 using RNAInferenceTool
 ```
 Note that the optimization function is a wrapper of adaptive differential evolution optimizier from [BlackBoxOptim](https://github.com/robertfeldt/BlackBoxOptim.jl).
@@ -17,7 +18,8 @@ Note that the optimization function is a wrapper of adaptive differential evolut
 ## Import data and true parameter set
 Suppose we have a set of synthetic nascent RNA data from stochastic simulation algorithm using delay telegraph model (check [this example](https://github.com/palmtree2013/RNAInferenceTool.jl/blob/main/examples/synthetic_data.ipynb) for details on how to generate synthetic data using [DelaySSAToolkit](https://github.com/palmtree2013/DelaySSAToolkit.jl)). The delay telegraph model can be described as 
 ![illustrate](examples/illustrate_delaytelegraph.png)
-where the parameters are 
+
+Here we define the rate of switching from the active (ON) state to  inactive (OFF) state as `σ_off`, the rate of switching from the OFF state to the ON state as `σ_on`. `ρ_on` represents the initiation rate when the gene state is ON. `ρ_off` represents the initiation rate when the gene state is OFF (leaky initiation rate), `d` is the detaching rate of polymerase from the gene. In this case, `ρ_off` and `d` are both set to zero.  Here `L1` and `L2` represent the PP7 862 bp (the linear increasing part of the fluorescence) and gene of interest (plateu part of the fluorescence) GAL10 2200 bp respectively. The numerical values are set as 
 ```julia
 # True parameters 
 # σ_off, σ_on, ρ_on, ρ_off, d, τ, SSA final time
@@ -25,7 +27,7 @@ where the parameters are
 # L1 =  signal fluorescence PP7 862 bp; L2 = GAL10 2200 bp 
 L1 = 862; L2 = 2200; 
 ```
-Here `ρ_off` represents the initiation rate when the gene state is inactive (leaky telegraph model), `d` is the possible detaching rate of polymerase from the gene. In this case, they are both set to zero.  Here `L1` and `L2` represents the PP7 862 bp (the linear increasing part of the fluorescence) and gene of interest (plateu part of the fluorescence) GAL10 2200 bp respectively.
+
 
 ## Check the distribution
 
@@ -47,14 +49,16 @@ SRange = [(0.0,50.0),(0.0,50.0),(0.0,100.0),(0.0,0.0),(0.0,0.0),(τ,τ)]
 SRange_tele = [(0.0,50.0),(0.0,50.0),(0.0,100.0),(0.0,0.0),(1/τ,1/τ)]
 ```
 
-The `OptimStruct` consists of four elements:
+Next, we set the data structure for optimization `OptimStruct`, which consists of the following elements:
 
 1. data: default type is histogram data; the other supported type is to use distribution directly.
 2. stage: `G1` or `G2`; where `G2` type data is inferred by setting G2 = G1*G1 (convolution).
-3. dist: the distance function: Likelihood, Likelihood_fusion, Likelihood_rejection and other distance functions in Distances.jl are supported.
+3. dist: the distance function: Likelihood, Likelihood_fusion, Likelihood_rejection and other distance functions in Distances.jl package are supported.
 4. model: telegraph model, delay telegraph model, and Poisson model are supported.
-5. infer_counts: `true` if the inferred histogram data represents the number of count of the product (mature or bound Pol II), `false` if the histogram data represents the normalised signal insensity.
-6. L1, L2: if infer_counts is set `false` then L1 and L2 must be provided which represents the indices of the trapezoid signal function.
+   
+Keywords arguments:
+1. infer_counts: Bool variable, `true` if the inferred histogram data is the number of count of the product (mature or bound Pol II), `false` if the histogram data is the normalized signal intensity.
+2. L1, L2: if infer_counts is set `false` then L1 and L2 must be provided which represents the indices of the trapezoid signal function.
 
 ```julia
 infer_struct = OptimStruct(histo_synthetic, G1(), Likelihood(), Delay(); infer_counts = false, L1 = 862, L2 =2200)
