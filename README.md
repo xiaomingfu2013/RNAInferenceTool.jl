@@ -50,7 +50,7 @@ SRange_tele = [(0.0,50.0),(0.0,50.0),(0.0,100.0),(0.0,0.0),(1/τ,1/τ)]
 
 Next, we set the data structure for optimization `OptimStruct`, which consists of the following elements:
 
-1. data: default type is histogram data; the other supported type is to use distribution directly.
+1. data: default type is histogram data; the other supported type is to use probability distribution.
 2. stage: `G1` or `G2`; where `G2` type data is inferred by setting G2 = G1*G1 (convolution).
 3. dist: the distance function: Likelihood, Likelihood_fusion, Likelihood_rejection and other distance functions in Distances.jl package are supported.
 4. model: telegraph model, delay telegraph model, and Poisson model are supported.

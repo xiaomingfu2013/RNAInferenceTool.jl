@@ -1,5 +1,5 @@
 using DelaySSAToolkit # install package at https://github.com/palmtree2013/DelaySSAToolkit.jl
-using JumpProcesses
+using JumpProcesses # add JumpProcesses
 #σ_off: Gon -> Goff
 #σ_on: Goff -> Gon
 #ρ_on: Gon -> Gon + N, triggers N => τ 0
@@ -16,8 +16,8 @@ function construct_prob_delaytelegraph(params)
     delay_trigger = Dict(3=>[1=>τ],4=>[1=>τ])
     delay_complete = Dict(1=>[3=>-1])
     delayjumpset = DelayJumpSet(delay_trigger,delay_complete,Dict())
-    u0 = [0,1,0]
-    de_chan0 = [[]]
+    u0 = [0,1,0] # initial condition
+    de_chan0 = [[]] # initial delay channel
     tspan = (0.,tf)
     dprob = DiscreteProblem(u0, tspan)
     djprob = DelayJumpProblem(dprob, DelayRejection(), jumpset, delayjumpset, de_chan0, save_positions = (false,false), save_delay_channel = true)
@@ -37,6 +37,4 @@ function signal_function(x; τ=τ , L1 = 862, L = 3062)
     return min(x/τ*L/L1,1)
 end
 # TEST
-
-# res[4]
 

@@ -1,7 +1,7 @@
 
 """ 
 Inference data struct
-1. data: default type is histogram data; another supported type is signal distribution;
+1. data: default type is histogram data; the other supported type is probability distribution;
 2. stage: G1 or G2; where G2 type data is inferred by setting G2 = G1*G1 (convolution);
 3. dist: the distance function: likelihood, likelihood_fusion, likelihood_rejection and other distance functions in Distances.jl are supported;
 4. model: telegraph model, delay telegraph model, and Poisson model are supported;
