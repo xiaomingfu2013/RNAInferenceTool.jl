@@ -1,5 +1,3 @@
-export Likelihood, Likelihood_fusion, Likelihood_weight, Wasserstein
-
 abstract type AbstractHistogramDistance end
 abstract type AbstractDistributionDistance end
 
@@ -49,11 +47,11 @@ function combine_ind(ind, combine::Int)
 end
 
 
-struct Likelihood_weight <: AbstractHistogramDistance
+struct Likelihood_merge <: AbstractHistogramDistance
     ξ::Float64
 end
-Likelihood_weight() = Likelihood_weight(1e-3)
-function (f::Likelihood_weight)(estimate_signal::Vector, histo_normalized_data::Vector; kwargs...)
+Likelihood_merge() = Likelihood_merge(1e-3)
+function (f::Likelihood_merge)(estimate_signal::Vector, histo_normalized_data::Vector; kwargs...)
     estimate_signal = max.(estimate_signal, 0)
     ind = Int.(floor.(histo_normalized_data) .+ 1)
     -sum(log.(estimate_signal[ind] .+ f.ξ)) # to avoid log(0)

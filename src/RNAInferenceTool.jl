@@ -14,5 +14,6 @@ export OptimStruct, optim_function
 export compute_distribution, direct_err_function, signal_distribution
 export sum_with_non, convert_histo
 export G1, G2, Delay, Telegraph, Poisson, DelayComplete, DelaySync, TelegraphSync
+export Likelihood, Likelihood_fusion, Likelihood_merge, Wasserstein
 
 end

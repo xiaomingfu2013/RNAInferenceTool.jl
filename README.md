@@ -10,7 +10,7 @@ using Pkg
 Pkg.add(https://github.com/palmtree2013/RNAInferenceTool.jl)
 using RNAInferenceTool
 ```
-Note that the optimization function is a function wrapper of the adaptive differential evolution optimizer from [BlackBoxOptim](https://github.com/robertfeldt/BlackBoxOptim.jl).
+Note that the optimization function is a function wrapper of the adaptive differential evolution optimizer from [BlackBoxOptim](https://github.com/robertfeldt/BlackBoxOptim.jl). 
 
 # A quick demo for fitting to the synthetic nascent signal data
 
@@ -80,7 +80,7 @@ plot!([distributions[:,1] distributions_tele[:,1]],lines=(2, :dash),labels=["Del
 
 ![delaytele](examples/delaytele.svg)
 
-## Compare the paramters
+## Compare the parameters
 ```julia
 DataFrame(True = params[1:3],Delay=estimated_params[1:3],Telegraph= estimated_params_tele[1:3])
 ```
@@ -89,3 +89,6 @@ DataFrame(True = params[1:3],Delay=estimated_params[1:3],Telegraph= estimated_pa
 | σ_off | 1.0526 | 0.969954 | 0.433565  |
 | σ_on  | 8.2034 | 7.78479  |  3.37541  |
 | ρ_on  | 57.989 | 57.6266  |  57.7762  |
+
+## Further use cases
+Check the sub folder mature and nascent [the "examples" folder](https://github.com/palmtree2013/RNAInferenceTool.jl/tree/main/examples) for the numerical experiments described in the paper from mature and nascent mRNA data. 
