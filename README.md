@@ -10,7 +10,7 @@ using Pkg
 Pkg.add(https://github.com/palmtree2013/RNAInferenceTool.jl)
 using RNAInferenceTool
 ```
-Note that the optimization function is a function wrapper of the adaptive differential evolution optimizer from [BlackBoxOptim](https://github.com/robertfeldt/BlackBoxOptim.jl). 
+Note that the optimization function is a function wrapper of the adaptive differential evolution optimizer from [BlackBoxOptim](https://github.com/robertfeldt/BlackBoxOptim.jl), that package is Copyright (c) 2013-2021: Robert Feldt.
 
 # A quick demo for fitting to the synthetic nascent signal data
 
