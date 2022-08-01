@@ -91,4 +91,4 @@ DataFrame(True = params[1:3],Delay=estimated_params[1:3],Telegraph= estimated_pa
 | ρ_on  | 57.989 | 57.6266  |  57.7762  |
 
 ## Further use cases
-Check the sub folder mature and nascent [the "examples" folder](https://github.com/palmtree2013/RNAInferenceTool.jl/tree/main/examples) for the numerical experiments described in the paper from mature and nascent mRNA data. 
+Check the subfolders "mature" and "nascent" under ["examples" folder](https://github.com/palmtree2013/RNAInferenceTool.jl/tree/main/examples) for the numerical experiments described in the paper from mature and nascent mRNA data. 
