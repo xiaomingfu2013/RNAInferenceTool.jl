@@ -117,7 +117,7 @@ function delay_term(p)
     return [h0, h1]
 end
 """
-    function M_tele(p, NT)
+    function M_delay(p, NT)
         
 params: σ_off, σ_on, ρ_on, ρ_off, d, τ
 """
