@@ -2,7 +2,6 @@
 abstract type Model end
 struct Delay <: Model end
 struct DelaySync <: Model end
-struct DelayComplete <: Model end
 struct Telegraph <: Model end
 struct TelegraphSync <: Model end
 struct Poisson <: Model end
@@ -17,10 +16,6 @@ function model_selection(params, NT::Int64, ::DelaySync)
     M_delay_sync([σ_off, σ_on, ρ_on, ρ_off, d, τ], NT)
 end
 
-function model_selection(params, NT::Int64, ::DelayComplete)
-    σ_off, σ_on, ρ_on, ρ_off, d, τ = params
-    M_delay_complete([σ_off, σ_on, ρ_on, ρ_off, d, τ], NT)
-end
 
 function model_selection(params, NT::Int64, ::Telegraph)
     σ_off, σ_on, ρ_on, ρ_off, d = params
