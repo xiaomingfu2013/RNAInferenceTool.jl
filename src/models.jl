@@ -121,10 +121,11 @@ end
         
 params: σ_off, σ_on, ρ_on, ρ_off, d, τ
 """
-function M_delay(p, NT::Int; kwargs...)
+function M_delay(p::Vector{T}, NT::Int; kwargs...) where {T}
     σ_off, σ_on, ρ_on, ρ_off, d, τ = p
     M = FSP_mat([σ_off, σ_on, ρ_on, ρ_off, d], NT; kwargs...)
-    semigroup = exp(Matrix(M) * τ)
+    semigroup = exp(Matrix{T}(M) * τ)
+    # semigroup = myexp(Matrix{T}(M) * τ)
 
     sol1 = semigroup[:, 1]
     sol2 = semigroup[:, NT+2]
