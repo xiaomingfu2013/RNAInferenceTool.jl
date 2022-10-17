@@ -3,7 +3,7 @@
 <!-- [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://palmtree2013.github.io/RNAInferenceTool.jl/dev) -->
 <!-- [![Build Status](ht dtps://github.com/palmtree2013/RNAInferenceTool.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/palmtree2013/RNAInferenceTool.jl/actions/workflows/CI.yml?query=branch%3Amain) -->
 
-This is a Julia code repository for the paper "Quantifying how post-transcriptional noise and gene copy number variation bias transcriptional parameter inference from mRNA distributions":
+This is a Julia code repository for the paper "Xiaoming Fu, Heta P Patel, Stefano Coppola, Libin Xu, Zhixing Cao, Tineke L Lenstra, Ramon Grima (2022) Quantifying how post-transcriptional noise and gene copy number variation bias transcriptional parameter inference from mRNA distributions eLife 11:e82493.":
 ```
 @article {10.7554/eLife.82493,
 article_type = {journal},
