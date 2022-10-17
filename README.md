@@ -3,7 +3,7 @@
 <!-- [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://palmtree2013.github.io/RNAInferenceTool.jl/dev) -->
 <!-- [![Build Status](ht dtps://github.com/palmtree2013/RNAInferenceTool.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/palmtree2013/RNAInferenceTool.jl/actions/workflows/CI.yml?query=branch%3Amain) -->
 
-This is a Julia code repository for the paper:
+This is a Julia code repository for the [paper](https://doi.org/10.7554/eLife.82493):
 ```
 @article {10.7554/eLife.82493,
 article_type = {journal},
