@@ -3,7 +3,28 @@
 <!-- [![Dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://palmtree2013.github.io/RNAInferenceTool.jl/dev) -->
 <!-- [![Build Status](ht dtps://github.com/palmtree2013/RNAInferenceTool.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/palmtree2013/RNAInferenceTool.jl/actions/workflows/CI.yml?query=branch%3Amain) -->
 
-This is a Julia code repository for the paper "Quantifying how post-transcriptional noise and gene copy number variation bias transcriptional parameter inference from mRNA distributions". This package can be installed through the Julia package manager:
+This is a Julia code repository for the paper "Quantifying how post-transcriptional noise and gene copy number variation bias transcriptional parameter inference from mRNA distributions":
+```
+@article {10.7554/eLife.82493,
+article_type = {journal},
+title = {Quantifying how post-transcriptional noise and gene copy number variation bias transcriptional parameter inference from mRNA distributions},
+author = {Fu, Xiaoming and Patel, Heta P and Coppola, Stefano and Xu, Libin and Cao, Zhixing and Lenstra, Tineke L and Grima, Ramon},
+editor = {Akhmanova, Anna},
+volume = 11,
+year = 2022,
+month = {oct},
+pub_date = {2022-10-17},
+pages = {e82493},
+citation = {eLife 2022;11:e82493},
+doi = {10.7554/eLife.82493},
+url = {https://doi.org/10.7554/eLife.82493},
+journal = {eLife},
+issn = {2050-084X},
+publisher = {eLife Sciences Publications, Ltd},
+}
+```
+
+This package can be installed through the Julia package manager:
 
 ```julia
 using Pkg
